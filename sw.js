@@ -1,6 +1,6 @@
 /* KOOM service worker: instant loads + offline app shell. Music/API traffic is never cached here. */
-const V = 'koom-shell-v15', IMG = 'koom-img-v1';
-const SHELL = ['./', 'index.html', 'app.js?v=5', 'i18n.js?v=5', 'config.js', 'koom.js?v=11', 'style.css?v=11', 'glass.css?v=1', 'glass.js?v=1', 'manifest.webmanifest', 'icon-192.png', 'favicon-32.png'];
+const V = 'koom-shell-v16', IMG = 'koom-img-v1';
+const SHELL = ['./', 'index.html', 'app.js?v=5', 'i18n.js?v=5', 'config.js', 'koom.js?v=12', 'style.css?v=11', 'glass.css?v=2', 'glass.js?v=2', 'offline.js?v=1', 'manifest.webmanifest', 'icon-192.png', 'favicon-32.png'];
 self.addEventListener('install', e => e.waitUntil(caches.open(V).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())));
 self.addEventListener('activate', e => e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== V && k !== IMG).map(k => caches.delete(k)))).then(() => self.clients.claim())));
 self.addEventListener('fetch', e => {
